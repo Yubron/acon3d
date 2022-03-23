@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
+import { BatchModule } from './batch/batchModule';
 
 @Module({
   imports: [
@@ -24,11 +25,13 @@ import configuration from './config/configuration';
         database: configService.get('database.name'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
+        logging: true,
       }),
       inject: [ConfigService],
     }),
     ProductModule,
     AuthModule,
+    BatchModule,
   ],
   controllers: [AppController],
   providers: [AppService],
