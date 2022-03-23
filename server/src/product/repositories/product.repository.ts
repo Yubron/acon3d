@@ -39,4 +39,42 @@ export class ProductRepository extends Repository<Product> {
       `
     )
   }
+
+  getApprovedProducts(page: number, displayLanguage: string) {
+    const offset = (page-1) * 30
+    
+    return this.query(
+      `
+        SELECT 
+          product."id",
+          product."title${displayLanguage}" as "title", 
+          product."content${displayLanguage}" as "content",
+          product."price",
+          product."createDate",
+          product."updateDate",
+          "user"."email"
+        FROM product
+        JOIN "user" on product."writerId" = "user"."id"
+        WHERE "status" = 'approved'
+        ORDER BY product."createDate" DESC
+        OFFSET ${offset}
+        LIMIT ${30}
+      `
+    )
+  }
+
+  getPendingProducts(page: number) {
+    const offset = (page-1) * 30
+    return this.query(
+      `
+        SELECT product.*, "user"."email"
+        FROM product
+        JOIN "user" on product."writerId" = "user"."id"
+        WHERE "status" = 'pending'
+        ORDER BY product."createDate" DESC
+        OFFSET ${offset}
+        LIMIT ${30}
+      `
+    )
+  }
 }

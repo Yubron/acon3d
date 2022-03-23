@@ -26,4 +26,27 @@ export class ProductService {
       throw e;
     }
   }
+
+  getApprovedProducts(page: number, acceptLanguage: string) {
+    try {
+      const displayLanguage = this.getDisplayLanguage(acceptLanguage.slice(0,2))
+      return this.productRepository.getApprovedProducts(page, displayLanguage)
+    } catch(e) {
+      throw e;
+    } 
+  }
+
+  getPendingProducts(page: number) {
+    try {
+      return this.productRepository.getPendingProducts(page)
+    } catch(e) {
+      throw e;
+    } 
+  }
+
+  getDisplayLanguage(acceptLanguage: string) {
+    if(acceptLanguage === 'ko') return 'Kr'
+    if(acceptLanguage === 'en') return 'Us'
+    if(acceptLanguage === 'zh') return 'Cn'
+  }
 }
