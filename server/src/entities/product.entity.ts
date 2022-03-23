@@ -37,6 +37,10 @@ export class Product {
   @JoinColumn({ name: "writerId" })
   writerId: number;
 
+  @ManyToOne(() => User, user => user.id)
+  @JoinColumn({ name: "editorId" })
+  editorId: number;
+
   @CreateDateColumn({ name: 'createDate', comment: '생성날짜' })
   createDate: Date;
 
