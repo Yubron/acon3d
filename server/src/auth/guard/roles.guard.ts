@@ -2,7 +2,6 @@ import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@
 import { Reflector } from '@nestjs/core';
 
 const matchRoles = (roles: string[], userRole: string) => { 
-  console.log('qq')
   return roles.some(role => role === userRole); 
 }; 
 

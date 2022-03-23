@@ -4,25 +4,16 @@ import { EntityRepository, Repository } from "typeorm"
 import { CreateProductDto } from "../dtos/create-product.dto"
 
 @EntityRepository(Product)
-export class ProductRepository extends Repository<Product> {
-  getAll() {    
-    return this.query(
-      `
-        SELECT *
-        FROM product
-      `
-    )
-  }
-  
-  createProduct(createProductDto: CreateProductDto) {
+export class ProductRepository extends Repository<Product> {  
+  createProduct(createProductDto: CreateProductDto, user: User) {
     const { title, content, price, country } = createProductDto
     
     return this.query(
       `
         INSERT INTO product
-          (title${country}, content${country}, price)
+          ("title${country}", "content${country}", "price", "writerId")
         VALUES
-          ('${title}', '${content}', '${price}')
+          ('${title}', '${content}', '${price}', '${user.id}')
       `
     )
   }

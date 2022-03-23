@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { User } from 'src/entities/user.entity';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { ProductRepository } from './repositories/product.repository';
 
 @Injectable()
 export class ProductService {
-  private readonly productRepository: ProductRepository
+  constructor(
+    private readonly productRepository: ProductRepository
+  ){}
 
-  getAll() {
-    return this.productRepository.getAll();
-  }
-
-  createProduct(createProductDto: CreateProductDto) {
-    return this.productRepository.createProduct(createProductDto);
+  createProduct(createProductDto: CreateProductDto, user: User) {
+    return this.productRepository.createProduct(createProductDto, user);
   }
 }

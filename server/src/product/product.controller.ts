@@ -13,7 +13,7 @@ export class ProductController {
   @Post('/')
   @Roles(ROLES.WRITER)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  createProduct(createProductDto: CreateProductDto) {
-    
+  createProduct(@Req() req: any, @Body() createProductDto: CreateProductDto) {
+    return this.productService.createProduct(createProductDto, req.user)
   }
 }
