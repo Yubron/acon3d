@@ -8,4 +8,8 @@ export default () => ({
     password: process.env.DATABASE_PASSWORD || '',
     port: process.env.DATABASE_PORT || '',
   },
+  jwt: {
+    secret: process.env.JWT_SECRET || '',
+    expiresIn: process.env.JWT_EXPIRESIN || ''
+  }
 });
