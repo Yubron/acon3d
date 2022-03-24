@@ -4,9 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
-import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
-import { BatchModule } from './batch/batchModule';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -25,13 +24,12 @@ import { BatchModule } from './batch/batchModule';
         database: configService.get('database.name'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
-        logging: true,
+        logging: false,
       }),
       inject: [ConfigService],
     }),
+    CommonModule,
     ProductModule,
-    AuthModule,
-    BatchModule,
   ],
   controllers: [AppController],
   providers: [AppService],

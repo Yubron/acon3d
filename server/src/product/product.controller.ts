@@ -1,7 +1,7 @@
 import { Body, Controller, DefaultValuePipe, Get, Headers, Post, Query, Req, UseGuards } from '@nestjs/common';
-import { Roles } from 'src/auth/guard/roles.decorator';
-import { RolesGuard } from 'src/auth/guard/roles.guard';
-import { JwtAuthGuard } from 'src/auth/jwtAuthGuard';
+import { JwtAuthGuard } from 'src/common/auth/jwtGuard/jwtAuthGuard';
+import { Roles } from 'src/common/auth/roleGuard/roles.decorator';
+import { RolesGuard } from 'src/common/auth/roleGuard/roles.guard';
 import { ROLES } from 'src/common/constants/roles';
 import { ApproveProductDto } from './dtos/approve-product.dto';
 import { CreateProductDto } from './dtos/create-product.dto';
@@ -27,7 +27,7 @@ export class ProductController {
 
   @Get('/')
   getApprovedProducts(@Query('page', new DefaultValuePipe(1)) page: number = 1, @Headers() header) {
-    return this.productService.getApprovedProducts(page, header['accept-language']);
+    return this.productService.getApprovedProducts(page, header['accept-language'] = 'ko');
   }
 
   @Get('/status/pending')

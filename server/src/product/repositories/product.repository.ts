@@ -1,7 +1,6 @@
-import { Product } from "src/entities/product.entity"
-import { User } from "src/entities/user.entity"
+import { Product } from "src/common/entities/product.entity"
+import { User } from "src/common/entities/user.entity"
 import { EntityRepository, Repository } from "typeorm"
-import { ApproveProductDto } from "../dtos/approve-product.dto"
 import { CreateProductDto } from "../dtos/create-product.dto"
 
 @EntityRepository(Product)
@@ -20,29 +19,18 @@ export class ProductRepository extends Repository<Product> {
     )
   }
 
-  approveProduct(approveProductDto: ApproveProductDto, user: User) {
-    const setList = []
-    setList.push(`"editorId" = ${user.id}`)
-    setList.push(`"status" = 'approved'`)
-    for (const [key, value] of Object.entries(approveProductDto)) {
-      if(key !== 'id') {
-        setList.push(`"${key}" = '${value}'`)
-      }
-    }
-    
+  approveProduct(setList: string[], id: number) {
     return this.query(
       `
         UPDATE product
         SET ${setList.join(',')}
-        WHERE id = ${approveProductDto.id}
+        WHERE id = ${id}
         RETURNING *
       `
     )
   }
 
-  getApprovedProducts(page: number, displayLanguage: string) {
-    const offset = (page-1) * 30
-    
+  getApprovedProducts(offset: number, displayLanguage: string) {
     return this.query(
       `
         SELECT 
@@ -63,8 +51,7 @@ export class ProductRepository extends Repository<Product> {
     )
   }
 
-  getPendingProducts(page: number) {
-    const offset = (page-1) * 30
+  getPendingProducts(offset: number) {
     return this.query(
       `
         SELECT product.*, "user"."email"

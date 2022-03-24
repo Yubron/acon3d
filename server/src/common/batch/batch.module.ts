@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
-import { TaskService } from './task.service';
+import { BatchService } from './batch.service';
 import { HttpModule } from '@nestjs/axios'
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ExchangeRateRepository } from './exchangeRate.repository';
+import { ExchangeRateRepository } from './repositories/exchangeRate.repository';
 
 @Module({
   imports: [
@@ -11,6 +11,6 @@ import { ExchangeRateRepository } from './exchangeRate.repository';
     ScheduleModule.forRoot(),
     HttpModule,
   ],
-  providers: [TaskService],
+  providers: [BatchService],
 })
 export class BatchModule { }
