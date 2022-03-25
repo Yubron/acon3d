@@ -14,8 +14,8 @@ export class ProductController {
   @Post('/')
   @Roles(ROLES.WRITER)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  createProduct(@Req() req: any, @Body() createProductDto: CreateProductDto) {
-    return this.productService.createProduct(createProductDto, req.user);
+  createProduct(@Req() req: any, @Body() createProductDto: CreateProductDto, @Headers() header) {
+    return this.productService.createProduct(createProductDto, req.user, header['accept-language']);
   }
 
   @Post('/approve')

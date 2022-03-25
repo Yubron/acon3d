@@ -14,8 +14,9 @@ export class ProductService {
     private readonly exchangeRateRepository: ExchangeRateRepository,
   ){}
 
-  createProduct(createProductDto: CreateProductDto, user: User) {
-    return this.productRepository.createProduct(createProductDto, user);
+  createProduct(createProductDto: CreateProductDto, user: User, acceptLanguage: string ='ko' ) {
+    const displayLanguage = this.getDisplayLanguage(acceptLanguage.slice(0,2))
+    return this.productRepository.createProduct(createProductDto, user, displayLanguage);
   }
 
   async approveProduct(approveProductDto: ApproveProductDto, user: User) {

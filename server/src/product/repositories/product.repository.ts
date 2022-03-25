@@ -5,13 +5,13 @@ import { CreateProductDto } from "../dtos/create-product.dto"
 
 @EntityRepository(Product)
 export class ProductRepository extends Repository<Product> {  
-  createProduct(createProductDto: CreateProductDto, user: User) {
-    const { title, content, price, country } = createProductDto
+  createProduct(createProductDto: CreateProductDto, user: User, displayLanguage: string) {
+    const { title, content, price } = createProductDto
     
     return this.query(
       `
         INSERT INTO product
-          ("title${country}", "content${country}", "price", "writerId")
+          ("title${displayLanguage}", "content${displayLanguage}", "price", "writerId")
         VALUES
           ('${title}', '${content}', '${price}', '${user.id}')
         RETURNING *

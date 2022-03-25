@@ -12,8 +12,4 @@ export class CreateProductDto {
   @IsNumber()
   @IsNotEmpty()
   price: number
-
-  @IsString()
-  @IsNotEmpty()
-  country: string
 }
