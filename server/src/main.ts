@@ -11,6 +11,8 @@ async function bootstrap() {
     transform: true, // 요청에서 넘어온 자료들의 형변환
   }));
 
+  app.enableCors()
+
   await app.listen(5000);
 }
 bootstrap();

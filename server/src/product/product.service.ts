@@ -40,7 +40,7 @@ export class ProductService {
     }
   }
 
-  async getApprovedProducts(page: number, acceptLanguage: string) {
+  async getApprovedProducts(page: number, acceptLanguage: string ='ko') {
     try {
       const displayLanguage = this.getDisplayLanguage(acceptLanguage.slice(0,2))
       const offset = (page-1) * 30
@@ -49,7 +49,6 @@ export class ProductService {
       await this.updateDisplayPrice(products, displayLanguage)
 
       return products;
-      // return this.productRepository.getApprovedProducts(offset, displayLanguage)
     } catch(e) {
       throw e;
     } 
@@ -57,8 +56,7 @@ export class ProductService {
 
   getPendingProducts(page: number) {
     try {
-      const offset = (page-1) * 30
-      // const products: Product[] = await this.productRepository.getPendingProducts(offset)
+      const offset = (page-1) * 30      
       
       return this.productRepository.getPendingProducts(offset)
     } catch(e) {

@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginDto } from './dtos/login.dto';
 import { RegisterDto } from './dtos/register.dto';
 import { JwtPayload } from './jwtGuard/jwt-payload.interface';
@@ -16,7 +16,7 @@ export class AuthService {
     try {
       return this.authRepository.create({...registerDto}).save();
     } catch (e) {
-
+      
     }
   }
 

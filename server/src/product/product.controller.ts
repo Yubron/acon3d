@@ -27,7 +27,7 @@ export class ProductController {
 
   @Get('/')
   getApprovedProducts(@Query('page', new DefaultValuePipe(1)) page: number = 1, @Headers() header) {
-    return this.productService.getApprovedProducts(page, header['accept-language'] = 'ko');
+    return this.productService.getApprovedProducts(page, header['accept-language']);
   }
 
   @Get('/status/pending')

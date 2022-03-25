@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany, BeforeInsert, BaseEntity } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany, BeforeInsert, BaseEntity, Unique } from "typeorm";
 import { Product } from "./product.entity";
 import * as bcrypt from 'bcrypt';
 
@@ -7,7 +7,7 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn({ name: 'id', comment: 'PK값' })
   id: number;
 
-  @Column({name: 'email', comment: '이메일 주소'})
+  @Column({name: 'email', comment: '이메일 주소', unique: true})
   email: string;
 
   @Column({name: 'password', comment: '비밀번호'})
