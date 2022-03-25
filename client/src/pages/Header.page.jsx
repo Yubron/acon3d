@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Header = () => {
-
+  const logout = (string) => {
+    localStorage.removeItem('aconToken')
+    localStorage.removeItem('email')
+    localStorage.removeItem('role')
+    alert('로그아웃 완료')
+  }
   return (
     <HeaderContainer>
       <ButtonFrame>
         <button> <Link to='/register'> REGISTER </Link> </button>
         <button> <Link to='/login'> LOGIN </Link> </button>
+        <button onClick={logout}> LOGOUT </button>
       </ButtonFrame>
 
       <h2> PAGE </h2>

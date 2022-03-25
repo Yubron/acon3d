@@ -1,4 +1,5 @@
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { request } from "../../utils/axios";
 
 // GET APPROVED PRODUCT
@@ -23,6 +24,33 @@ const getPendingProducts = ({ page=1 }) => {
 
 export const useGetPendingProducts = ({ page=1 }) => {
   return useQuery(['getPendingProducts', page ], () => getPendingProducts({ page }), {
-    // onError: (error) => 
   });
 }; 
+
+// POST PRODUCT
+const createProduct = (title, content, price) => {
+  return request({
+    method: 'post',
+    url: `/product`,
+    data: {title, content, price: parseInt(price)}
+  })
+}
+
+export const useCreateProduct = () => {
+  const navigate = useNavigate()
+  return useMutation(
+    createProductDto => {
+      return createProduct(
+        createProductDto.title,
+        createProductDto.content,
+        createProductDto.price,
+      );
+    },
+    {
+      onSuccess: () => {
+        alert('등록이 완료되었습니다 !');
+        navigate('/')
+      }
+    },
+  );
+}
