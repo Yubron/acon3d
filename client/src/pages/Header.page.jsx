@@ -4,15 +4,11 @@ import styled from 'styled-components'
 
 const Header = () => {
 
-  
-
   return (
     <HeaderContainer>
-      <h2> LOGIN </h2>
       <ButtonFrame>
-        <button> GUEST </button>
-        <button> WRITER </button>
-        <button> EDITOR </button>
+        <button> <Link to='/register'> REGISTER </Link> </button>
+        <button> <Link to='/login'> LOGIN </Link> </button>
       </ButtonFrame>
 
       <h2> PAGE </h2>

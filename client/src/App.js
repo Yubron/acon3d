@@ -4,6 +4,8 @@ import styled from "styled-components"
 import WriterPage from "./pages/Writer.page";
 import EditorPage from "./pages/Editor.page";
 import Header from "./pages/Header.page";
+import RegisterPage from "./pages/Register.page";
+import LoginPage from "./pages/Login.page";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/" element={<GuestPage />} />
         <Route path="/writer" element={<WriterPage/>} />
         <Route path="/editor" element={<EditorPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Container>
   );
