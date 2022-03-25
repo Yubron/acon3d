@@ -24,6 +24,7 @@ const getPendingProducts = ({ page=1 }) => {
 
 export const useGetPendingProducts = ({ page=1 }) => {
   return useQuery(['getPendingProducts', page ], () => getPendingProducts({ page }), {
+    select: data => data.data,
   });
 }; 
 

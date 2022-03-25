@@ -21,7 +21,7 @@ const ProductTableComponent = ({products}) => {
             products.map(product => {
               const {id, title, content, localPrice, email, createDate} = product
               return (
-                <tr>
+                <tr key={id}>
                   <td> {id} </td>
                   <td> {title} </td>
                   <td> {content} </td>

@@ -6,6 +6,7 @@ import EditorPage from "./pages/Editor.page";
 import Header from "./pages/Header.page";
 import RegisterPage from "./pages/Register.page";
 import LoginPage from "./pages/Login.page";
+import DetailPage from "./pages/Detail.page";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/editor" element={<EditorPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/product/:id" element={<DetailPage />} />
       </Routes>
     </Container>
   );

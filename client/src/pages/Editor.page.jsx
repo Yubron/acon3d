@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MainContainer } from '../common'
-import ProductTableComponent from '../components/ProductTable.component'
 import { useGetPendingProducts } from '../hooks/useQuery/useProduct'
 import { useNavigate } from 'react-router-dom';
 import LoadingPage from './Loading.page'
+import EditorTableComponent from '../components/EditorTable.component';
 
 const EditorPage = () => {
-  const { data, isLoading } = useGetPendingProducts({})
+  const { page, setPage } = useState(1)
+
+  const { data, isLoading } = useGetPendingProducts({page: page})
   const navigate = useNavigate()
   
   useEffect(() => {
@@ -22,7 +24,7 @@ const EditorPage = () => {
 
   return (
     <MainContainer>
-      <ProductTableComponent products={data}/>
+      <EditorTableComponent products={data}/>
     </MainContainer>
   )
 }
