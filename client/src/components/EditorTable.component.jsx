@@ -1,7 +1,7 @@
 import React from 'react'
 import { MainContainer } from '../common'
 import styled from 'styled-components'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const EditorTableComponent = ({products}) => {
   const navigate = useNavigate()
   return (

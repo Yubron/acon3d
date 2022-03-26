@@ -1,8 +1,9 @@
 import React from 'react'
 import { MainContainer } from '../common'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 const ProductTableComponent = ({products}) => {
-  
+  const navigate = useNavigate()
   return (
     <MainContainer>
       <Table>
@@ -21,7 +22,7 @@ const ProductTableComponent = ({products}) => {
             products.map(product => {
               const {id, title, content, localPrice, email, createDate} = product
               return (
-                <tr key={id}>
+                <tr key={id} onClick={() => navigate(`/product/${id}`, {state: {product: product}})}>
                   <td> {id} </td>
                   <td> {title} </td>
                   <td> {content} </td>
