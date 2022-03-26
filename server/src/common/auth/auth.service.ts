@@ -10,13 +10,13 @@ export class AuthService {
   constructor(
     private readonly authRepository: AuthRepository,
     private jwtService: JwtService
-  ){}
+  ) { }
 
   register(registerDto: RegisterDto) {
     try {
-      return this.authRepository.create({...registerDto}).save();
+      return this.authRepository.create({ ...registerDto }).save();
     } catch (e) {
-      
+      throw e;
     }
   }
 

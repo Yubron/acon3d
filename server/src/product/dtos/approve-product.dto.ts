@@ -1,37 +1,37 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
-export class ApproveProductDto {  
+export class ApproveProductDto {
   @IsNumber()
-  id: number
-  
-  @IsOptional()
-  @IsString()
-  titleKr?: string
+  id: number;
 
   @IsOptional()
   @IsString()
-  titleUs?: string
-  
-  @IsOptional()
-  @IsString()
-  titleCn?: string
+  titleKr?: string;
 
   @IsOptional()
   @IsString()
-  contentKr?: string
-  
-  @IsOptional()
-  @IsString()
-  contentUs?: string
+  titleUs?: string;
 
   @IsOptional()
   @IsString()
-  contentCn?: string
+  titleCn?: string;
+
+  @IsOptional()
+  @IsString()
+  contentKr?: string;
+
+  @IsOptional()
+  @IsString()
+  contentUs?: string;
+
+  @IsOptional()
+  @IsString()
+  contentCn?: string;
 
   @IsOptional()
   @IsNumber()
-  price?: number
+  price?: number;
 
   @IsNumber()
-  commission: number
+  commission: number;
 }

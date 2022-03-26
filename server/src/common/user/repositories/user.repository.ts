@@ -7,9 +7,8 @@ export class UserRepostiory extends Repository<User> {
     return this.query(
       `
         SELECT "user"."email", "user"."role"
-        FROM "user"
-        
+        FROM "user"  
       `
-    )
+    );
   }
 }

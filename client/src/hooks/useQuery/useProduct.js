@@ -47,7 +47,7 @@ const createProduct = (title, content, price) => {
     method: 'post',
     url: `/product`,
     data: {title, content, price: parseInt(price)}
-  })
+  });
 }
 
 export const useCreateProduct = () => {
@@ -72,10 +72,10 @@ export const useCreateProduct = () => {
 // APPROVE PRODUCT
 const approveProduct = (id, titleKr, titleUs, titleCn, contentKr, contentUs, contentCn, price, commission) => {
   return request({
-    method: 'post',
+    method: 'patch',
     url: `/product/approve`,
     data: {id, titleKr, titleUs, titleCn, contentKr, contentUs, contentCn, price: parseInt(price), commission: parseInt(commission)}
-  })
+  });
 }
 
 export const useApproveProduct = () => {

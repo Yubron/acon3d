@@ -4,7 +4,7 @@ enum UserRoleType {
   GUEST = 'guest',
   WRITER = 'writer',
   EDITOR = 'editor'
-}
+};
 
 export class RegisterDto {
   @IsEmail({}, { message: '올바른 형식의 이메일을 입력해주세요' })

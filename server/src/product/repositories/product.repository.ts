@@ -4,10 +4,10 @@ import { EntityRepository, Repository } from "typeorm"
 import { CreateProductDto } from "../dtos/create-product.dto"
 
 @EntityRepository(Product)
-export class ProductRepository extends Repository<Product> {  
+export class ProductRepository extends Repository<Product> {
   createProduct(createProductDto: CreateProductDto, user: User, displayLanguage: string) {
-    const { title, content, price } = createProductDto
-    
+    const { title, content, price } = createProductDto;
+
     return this.query(
       `
         INSERT INTO product
@@ -16,7 +16,7 @@ export class ProductRepository extends Repository<Product> {
           ('${title}', '${content}', '${price}', '${user.id}')
         RETURNING *
       `
-    )
+    );
   }
 
   approveProduct(setList: string[], id: number) {
@@ -27,7 +27,7 @@ export class ProductRepository extends Repository<Product> {
         WHERE id = ${id}
         RETURNING *
       `
-    )
+    );
   }
 
   getApprovedProducts(offset: number, displayLanguage: string) {
@@ -48,7 +48,7 @@ export class ProductRepository extends Repository<Product> {
         OFFSET ${offset}
         LIMIT ${30}
       `
-    )
+    );
   }
 
   getPendingProducts(offset: number) {
@@ -62,16 +62,16 @@ export class ProductRepository extends Repository<Product> {
         OFFSET ${offset}
         LIMIT ${30}
       `
-    )
+    );
   }
 
-  getProduct(id) {
+  getProduct(id: number) {
     return this.query(
       `
         SELECT *
         FROM product
         WHERE id = ${id}
       `
-    )
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, DefaultValuePipe, Get, Headers, Param, Post, Query, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Get, Headers, Param, Patch, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/common/auth/jwtGuard/jwtAuthGuard';
 import { Roles } from 'src/common/auth/roleGuard/roles.decorator';
 import { RolesGuard } from 'src/common/auth/roleGuard/roles.guard';
@@ -9,8 +9,8 @@ import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
-  
+  constructor(private readonly productService: ProductService) { }
+
   @Post('/')
   @Roles(ROLES.WRITER)
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -18,7 +18,7 @@ export class ProductController {
     return this.productService.createProduct(createProductDto, req.user, header['accept-language']);
   }
 
-  @Post('/approve')
+  @Patch('/approve')
   @Roles(ROLES.EDITOR)
   @UseGuards(JwtAuthGuard, RolesGuard)
   approveProduct(@Req() req: any, @Body() approveProductDto: ApproveProductDto) {
@@ -39,6 +39,6 @@ export class ProductController {
 
   @Get('/:id')
   getProduct(@Param('id') id: number) {
-    return this.productService.getProduct(id)
+    return this.productService.getProduct(id);
   }
 }

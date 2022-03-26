@@ -12,7 +12,7 @@ export class ExchangeRateRepository extends Repository<ExchangeRate> {
         VALUES
           ('${exchangeRateDto.date}',${exchangeRateDto.us}, ${exchangeRateDto.cn})
       `
-    )
+    );
   }
 
   getTodayHourExchangeRate(date: Date) {
@@ -22,7 +22,7 @@ export class ExchangeRateRepository extends Repository<ExchangeRate> {
         FROM "exchangeRate"
         WHERE date = '${date.toISOString()}'
       `
-    )
+    );
   }
 
   getLastExchangeRate() {
@@ -33,6 +33,6 @@ export class ExchangeRateRepository extends Repository<ExchangeRate> {
         ORDER BY "date" DESC
         LIMIT 1
       `
-    )
+    );
   }
 }
