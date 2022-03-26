@@ -1,7 +1,7 @@
 import React from 'react'
 import { MainContainer } from '../common'
 import ProductTableComponent from '../components/ProductTable.component'
-import { useGetApprovedProducts, useGetPendingProducts } from '../hooks/useQuery/useProduct'
+import { useGetApprovedProducts } from '../hooks/useQuery/useProduct'
 import LoadingPage from './Loading.page'
 
 const GuestPage = () => {

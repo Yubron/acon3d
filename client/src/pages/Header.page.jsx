@@ -31,14 +31,12 @@ const Header = () => {
 export default Header
 
 const HeaderContainer = styled.div`
-  width: 100%;
-  background-color: blue;
+  width: 100%;  
   margin-bottom: 30px;
 `
 
 const ButtonFrame = styled.div`
   width: 13%;
-  background-color: pink;
   display: flex;
   justify-content: space-between
 `

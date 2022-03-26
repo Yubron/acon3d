@@ -6,7 +6,7 @@ import LoadingPage from './Loading.page'
 import EditorTableComponent from '../components/EditorTable.component';
 
 const EditorPage = () => {
-  const { page, setPage } = useState(1)
+  const [ page, setPage ] = useState(1)
 
   const { data, isLoading } = useGetPendingProducts({page: page})
   const navigate = useNavigate()
