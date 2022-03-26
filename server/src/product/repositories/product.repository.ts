@@ -64,4 +64,14 @@ export class ProductRepository extends Repository<Product> {
       `
     )
   }
+
+  getProduct(id) {
+    return this.query(
+      `
+        SELECT *
+        FROM product
+        WHERE id = ${id}
+      `
+    )
+  }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, DefaultValuePipe, Get, Headers, Post, Query, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Get, Headers, Param, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/common/auth/jwtGuard/jwtAuthGuard';
 import { Roles } from 'src/common/auth/roleGuard/roles.decorator';
 import { RolesGuard } from 'src/common/auth/roleGuard/roles.guard';
@@ -35,5 +35,10 @@ export class ProductController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   getPendingProducts(@Query('page', new DefaultValuePipe(1)) page: number = 1) {
     return this.productService.getPendingProducts(page);
+  }
+
+  @Get('/:id')
+  getProduct(@Param('id') id: number) {
+    return this.productService.getProduct(id)
   }
 }

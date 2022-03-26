@@ -65,6 +65,14 @@ export class ProductService {
     } 
   }
 
+  getProduct(id: number) {
+    try {
+      return this.productRepository.getProduct(id)
+    } catch(e) {
+      throw e;
+    }
+  }
+
   getDisplayLanguage(acceptLanguage: string) {
     if(acceptLanguage === 'ko') return 'Kr'
     if(acceptLanguage === 'en') return 'Us'
